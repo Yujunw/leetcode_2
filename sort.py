@@ -14,9 +14,9 @@ def bubble_sort(l):
         return l
 
     for i in range(length-1):
-        for j in range(i+1,length):
-            if l[i] > l[j]:
-                l[i], l[j] = l[j], l[i]
+        for j in range(length-i-1):
+            if l[j] > l[j+1]:
+                l[j], l[j+1] = l[j+1], l[j]
 
     return l
 
@@ -133,6 +133,6 @@ if __name__ == '__main__':
     l1 = [9, 8, 6, 7, 6, 5, 3, 4, 2, 1]
     l2 = [1]
     l3 = []
-    l0 = merge_sort(l1)
+    l0 = bubble_sort(l1)
     print(l0)
 
