@@ -68,6 +68,7 @@ def shell_sort(l):
     '''
     希尔排序/缩小增量排序
     希尔排序平均效率是O(nlogn)，大概是O(n^1.3)。其中分组的合理性会对算法产生重要的影响
+    test
     :param l:
     :return:
     '''
@@ -91,6 +92,7 @@ def shell_sort(l):
             l[j+gap] = tmp
         gap = gap//2
     return l
+
 
 
 if __name__ == '__main__':
