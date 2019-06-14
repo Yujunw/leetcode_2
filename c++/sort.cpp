@@ -6,13 +6,13 @@ void bubble_sort(int* l, int len)
     int tmp = 0;
     for(int i=0;i<len-1;i++)
     {
-        for(int j=i+1;j<len;j++)
+        for(int j=0;j<len-i-1;j++)
         {
-            if(l[i] > l[j])
+            if(l[j] > l[j+1])
             {
                 tmp = l[j];
-                l[j] = l[i];
-                l[i] = tmp;
+                l[j] = l[j+1];
+                l[j+1] = tmp;
 
             }
         }
@@ -29,8 +29,6 @@ void selection_sort(int* l, int len)
         {
             if(l[minIndex] > l[j])
                 minIndex = j;
-
-
         }
 
         if(minIndex != i)
@@ -81,6 +79,53 @@ void shell_sort(int* l, int len)
 	 } 
 }
 
+void merge(int arr[], int left, int mid, int right)
+{
+	int help[right-left+1]; 
+	int i=0;
+	int left_index = left;
+	int right_index = mid+1;
+	while(left_index <= mid && right_index <= right)
+	{
+		help[i++] = arr[left_index++]<arr[right_index++]? arr[left_index++]:arr[right_index]; 
+	 }
+	
+	while(left_index<=mid)
+	{
+		help[i++] = arr[left_index++];	
+	} 
+	
+	while(right_index<=right)
+	{
+		help[i++] = arr[right_index++];
+	}
+	
+	for(int i=0;i<right-left+1;i++)
+	{
+		arr[left+i] = help[i];
+	}
+	
+}
+
+void merge_sort(int arr[], int left, int right)
+{
+	if(left==right)
+	{
+		return;
+	}
+	
+	int len = sizeof(arr)/ sizeof(arr[0]);
+    if(len<2){
+    	return;
+	}
+	
+	int mid = (left+right)/2;
+	merge_sort(arr, left, mid);
+	merge_sort(arr,mid+1,right);
+	
+	merge(arr,left,mid,right);
+}
+
 void print(int* l, int len)
 {
     for(int i=0;i<len;i++)
@@ -96,9 +141,10 @@ int main() {
     int l2[] = {1};
     int l3[] = {};
 
-//    C++中没有直接读取数组长度的函数
+//    C++
     int len = sizeof(l1)/ sizeof(l1[0]);
-    shell_sort(l1,len);
+    
+    selection_sort(l1,len);
     print(l1,len);
     return 0;
 

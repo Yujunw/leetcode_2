@@ -4,10 +4,8 @@
 def bubble_sort(l):
     '''
     时间复杂度 （n-1）+ (n-2) + (n-3) + ... + 1 = n*(n-1)/2
-    空间复杂度 O(1)
     O(n^2)
-    :param l:
-    :return:
+    空间复杂度 O(1)
     '''
     length = len(l)
     if length < 2:
@@ -24,10 +22,8 @@ def bubble_sort(l):
 def selection_sort(l):
     '''
     时间复杂度 n-1）+ (n-2) + (n-3) + ... + 1 = n*(n-1)/2
-    空间复杂度 O(1)
     O(n^2)
-    :param l:
-    :return:
+    空间复杂度 O(1)
     '''
     length = len(l)
     if length < 2:
@@ -49,8 +45,6 @@ def insert_sort(l):
     时间复杂度：1+2+3+...+(n-1) = n*(n-1)/2
     O(n^2)
     空间复杂度 O(1)
-    :param l:
-    :return:
     '''
     length = len(l)
     if length < 2:
@@ -58,6 +52,7 @@ def insert_sort(l):
 
     for i in range(1,length):
         j = i-1
+        # key是未排序序列的第一 个元素
         key = l[i]
         while j >= 0:
             if key < l[j] :
@@ -71,8 +66,6 @@ def shell_sort(l):
     希尔排序/缩小增量排序
     希尔排序平均效率是O(nlogn)，大概是O(n^1.3)。其中分组的合理性会对算法产生重要的影响
     空间复杂度 O(1)
-    :param l:
-    :return:
     '''
     length = len(l)
     if length < 2:
@@ -103,8 +96,6 @@ def merge_sort(l):
     推导 https://blog.csdn.net/qq_31617121/article/details/79249546
     递归树推导，每一层树的时间复杂度都是O(n)，共有logn层
     空间复杂度 O(n)
-    :param l:
-    :return:
     '''
     length = len(l)
     if length < 2:
@@ -129,10 +120,31 @@ def merge(left,right):
 
     return result
 
+def quick_sort(l,left,right):
+    length = len(l)
+    if length < 2:
+        return l
+    if left >= right:
+        return l
+    low, high = left, right
+    key = l[left]
+    while left < right:
+        while left < right and key <= l[right]:
+            right -= 1
+        l[left] = l[right]
+        while left < right and key >= l[left]:
+            left += 1
+        l[right] = l[left]
+    l[right] = key
+    quick_sort(l,low,left-1)
+    quick_sort(l,left+1,high)
+    return l
+
+
 if __name__ == '__main__':
     l1 = [9, 8, 6, 7, 6, 5, 3, 4, 2, 1]
     l2 = [1]
     l3 = []
-    l0 = bubble_sort(l1)
+    l0 = quick_sort(l1,0,9)
     print(l0)
 
