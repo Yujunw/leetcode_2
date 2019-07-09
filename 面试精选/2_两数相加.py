@@ -25,8 +25,8 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        l1_num = self.node2num(l1)
-        l2_num = self.node2num(l2)
+        l1_num = self._node2num(l1)
+        l2_num = self._node2num(l2)
         res = l1_num+l2_num
         # print(res)
         l0 = ListNode(0)
@@ -42,7 +42,7 @@ class Solution(object):
 
         return dummy.next
 
-    def node2num(self, l):
+    def _node2num(self, l):
         num = 0
         i=0
         while l:
@@ -53,6 +53,21 @@ class Solution(object):
 
     def addTwoNumbers_2(self, l1, l2):
         """
+        伪代码如下：
+
+        将当前结点初始化为返回列表的哑结点。
+        将进位 carrycarry 初始化为 00。
+        将 pp 和 qq 分别初始化为列表 l1l1 和 l2l2 的头部。
+        遍历列表 l1l1 和 l2l2 直至到达它们的尾端。
+        将 xx 设为结点 pp 的值。如果 pp 已经到达 l1l1 的末尾，则将其值设置为 00。
+        将 yy 设为结点 qq 的值。如果 qq 已经到达 l2l2 的末尾，则将其值设置为 00。
+        设定 sum = x + y + carrysum=x+y+carry。
+        更新进位的值，carry = sum / 10carry=sum/10。
+        创建一个数值为 (sum \bmod 10)(summod10) 的新结点，并将其设置为当前结点的下一个结点，然后将当前结点前进到下一个结点。
+        同时，将 pp 和 qq 前进到下一个结点。
+        检查 carry = 1carry=1 是否成立，如果成立，则向返回列表追加一个含有数字 11 的新结点。
+        返回哑结点的下一个结点。
+
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
@@ -61,15 +76,22 @@ class Solution(object):
         p1, p2 = l1, l2
         carry = 0
         while p1 or p2:
-            s = p1.val + p2.val
-            s = s % 10 + carry
+            s = p1.val + p2.val + carry
+            carry = s // 10
+            s = s % 10
             p0.next = ListNode(s)
             p0 = p0.next
-            carry = s // 10
 
             p1 = p1.next
             p2 = p2.next
 
+            if not p1 and p2:
+                p1 = ListNode(0)
+            if p1 and not p2:
+                p2 = ListNode(0)
+
+        if carry == 1:
+            p0.next = ListNode(1)
         return dummy.next
 
 
@@ -78,19 +100,24 @@ if __name__ == '__main__':
     l1 = ListNode(1)
     l2 = ListNode(2)
     l3 = ListNode(3)
+
     l4 = ListNode(4)
     l5 = ListNode(5)
     l6 = ListNode(6)
+    l7 = ListNode(7)
+    l9 = ListNode(9)
 
     l0 = ListNode(0)
 
-    l1.next = l2
-    l2.next = l3
+    l2.next = l4
+    l4.next = l3
 
-    l4.next = l5
-    l5.next = l6
+    # l5.next = l6
+    # l6.next = l4
+    # l6.next = l5
+
     s = Solution()
-    l = s.addTwoNumbers(l0,l0)
+    l = s.addTwoNumbers_2(l5,l5)
 
     while l:
         print(l.val)
