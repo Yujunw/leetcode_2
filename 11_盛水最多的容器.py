@@ -16,7 +16,6 @@ class Solution:
         j = length - 1
 
         while i < j:
-
             if height[i] < height[j]:
                 area = height[i] * (j - i)
                 if area > maxarea:
