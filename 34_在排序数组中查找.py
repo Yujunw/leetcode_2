@@ -11,25 +11,6 @@
 '''
 
 class Solution:
-    def searchRange(self, nums, target):
-        # if target not in nums:
-        #     return [-1,-1]
-
-        i, j = 0, len(nums)-1
-        while i <= j:
-            if nums[i] < target:
-                i += 1
-            if nums[j] > target:
-                j -= 1
-
-            if nums[i] == nums[j]:
-                pass
-
-        if nums[i] == nums[j] and nums[i] == target:
-            return [i, j]
-        else:
-            return [-1, -1]
-
     def searchRange_2(self, nums, target):
 
         j = len(nums)-1
