@@ -32,7 +32,6 @@ class Solution:
             digits.insert(0, c)
         return digits
 
-
 s = Solution()
 digits = [0]
 print(s.plusOne(digits))
