@@ -1,68 +1,66 @@
 '''
-给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
+给定一个二叉树，返回其节点值的锯齿形层次遍历。（即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）。
 
-例如:
-给定二叉树: [3,9,20,null,null,15,7],
+例如：
+给定二叉树 [3,9,20,null,null,15,7],
+
     3
    / \
   9  20
     /  \
    15   7
-返回其层次遍历结果：
+返回锯齿形层次遍历如下：
+
 [
   [3],
-  [9,20],
+  [20,9],
   [15,7]
 ]
 
 '''
+
+
 # Definition for a binary tree node.
-from collections import deque
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
 
+
+from collections import deque
+
+
 class Solution:
-    def levelOrder(self, root):
-        if not root:
-            return []
-        stack = [root]
-        res = []
-
-        while stack:
-            node = stack.pop(0)
-            res.append(node.val)
-
-            if node.left:
-                stack.append(node.left)
-            if node.right:
-                stack.append(node.right)
-        return res
-
-    def levelOrder_2(self, root):
+    def zigzagLevelOrder(self, root):
         levels = []
         if not root:
             return levels
-        level = 0
+
         queue = deque([root, ])
+        level = 0
+
         while queue:
             levels.append([])
+            temp = []
             length = len(queue)
 
             for i in range(length):
                 node = queue.popleft()
-                levels[level].append(node.val)
+                temp.append(node.val)
                 if node.left:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
 
+            if level % 2 == 1:
+                levels[level] = temp[::-1]
+            else:
+                levels[level] = temp
+
             level += 1
 
         return levels
-
 
 
 s = Solution()
@@ -77,12 +75,10 @@ node8 = TreeNode(8)
 
 node1.left = node2
 node1.right = node3
-
 node2.left = node4
-
 node3.left = node5
 node3.right = node6
 node6.left = node7
 node6.right = node8
 
-print(s.levelOrder_2(node1))
+print(s.zigzagLevelOrder(node1))
