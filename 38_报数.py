@@ -17,4 +17,27 @@
 
 
 class Solution:
-    def countAndSay(self, n: int) -> str:
+    def countAndSay(self, n: int):
+        def next_num(num):
+            res = ''
+            i = 0
+            length = len(num)
+            while i < length:
+                count = 1
+                while i < length - 1 and num[i] == num[i + 1]:
+                    count += 1
+                    i += 1
+                res += str(count) + str(num[i])
+                i += 1
+
+            return res
+
+        # 不断地根据前一个数字推出后一个数字
+        res = '1'
+        for i in range(1, n):
+            res = next_num(res)
+        return res
+
+
+s = Solution()
+s.countAndSay(10)
