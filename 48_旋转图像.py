@@ -16,13 +16,30 @@
   [9,6,3]
 ]
 '''
-
+import math
 class Solution:
     def rotate(self, matrix):
         """
         Do not return anything, modify matrix in-place instead.
         """
-        print(matrix[:, 0])
+        n = len(matrix[0])
+        m = math.ceil(n / 2)
+
+        for i in range(m):
+            for j in range(n // 2):
+                temp = [0] * 4
+                row, col = i, j
+                # 存储4个元素
+                for k in range(4):
+                    temp[k] = matrix[row][col]
+                    row, col = col, n - 1 - row
+                # 旋转4个元素
+                for k in range(4):
+                    matrix[row][col] = temp[(k - 1) % 4]
+                    row, col = col, n - 1 - row
+
+        print(matrix)
+
 
 
 S = Solution()
