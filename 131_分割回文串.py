@@ -16,22 +16,22 @@
 
 class Solution:
     def partition(self, s):
-        def __dfs(combination, strs):
+        def dfs(combination, strs):
             # t = []
-            if combination == reversed(combination):
+            if combination == combination[::-1] and len(combination) >= 1:
                 res.append(combination)
 
             for i in range(len(strs)):
-                temp_str = strs[0:i]+strs[i+1:-1]
-                __dfs(combination+s[i], temp_str)
+                temp_str = strs[:i] + strs[i + 1:]
+                dfs(combination + strs[i], temp_str)
 
         res = []
-
         if s:
-            res.append(__dfs('', s))
+            dfs('', s)
         return res
 
 
-s  = Solution()
+s = Solution()
 strs = 'aab'
 print(s.partition(strs))
+print(strs[:0] + strs[1:])
