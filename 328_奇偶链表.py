@@ -49,6 +49,28 @@ class Solution:
         # odd.next = q.next
         # return p.next
 
+    def oddEvenList_2(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+
+        p1 = p2 = head
+        q1 = q2 = head.next
+
+        while p1 and q1:
+            if q1.next:
+                p1.next = q1.next
+            if p1.next:
+                q1.next = p1.next.next
+
+            p1 = p1.next
+            if q1.next:
+                q1 = q1.next
+
+        # p1不能为None，q1必须为None
+        p1.next = q2
+        return p2
+
+
 
 node1 = ListNode(1)
 node2 = ListNode(2)
@@ -62,10 +84,8 @@ node3.next = node4
 node4.next = node5
 
 s = Solution()
-node = s.oddEvenList(node1)
+node = s.oddEvenList_2(node1)
 while node:
     print(node.val)
     node = node.next
 
-if not None:
-    print(999)
