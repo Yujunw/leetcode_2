@@ -17,22 +17,6 @@
 
 
 class Solution:
-
-    # def merge(self, intervals):
-    #
-    #     if len(intervals) == 0 or len(intervals) == 1:
-    #         return intervals
-    #     res = []
-    #     for i in range(1,len(intervals)):
-    #         if intervals[i][0] <= intervals[i-1][1]:
-    #             if intervals[i][0] < intervals[i-1][0]:
-    #                 res.append(intervals[i])
-    #             else:
-    #                 res.append([intervals[i-1][0],intervals[i][1]])
-    #         else:
-    #             res.append(intervals[i])
-    #
-    #     return res
     def merge(self, intervals):
         intervals.sort(key=lambda x: x[0])
         res = []

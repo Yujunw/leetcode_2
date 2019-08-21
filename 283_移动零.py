@@ -6,6 +6,8 @@
 说明:
 必须在原数组上操作，不能拷贝额外的数组。
 尽量减少操作次数。
+
+双指针，一个指针指向0，另一个指针遍历数组，遇到非0元素则进行交换
 '''
 
 
@@ -23,6 +25,18 @@ class Solution:
                 count_0 += 1
         print(nums)
 
+    def moveZeros_2(self, nums):
+        i = 0
+        # i是第一个0的位置，i<len(nums)
+
+        for j in range(len(nums)):
+            if nums[j] != 0:
+                nums[i], nums[j] = nums[j], nums[i]
+                i += 1
+
+        return nums
+
 
 s = Solution()
-nums = [0, 1, 0, 3, 12]
+nums = [1]
+print(s.moveZeros_2(nums))

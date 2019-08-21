@@ -19,7 +19,6 @@
 二分查找的模板
 '''
 
-
 class Solution:
     def mySqrt(self, x: int) -> int:
         if x == 1:

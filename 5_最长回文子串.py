@@ -15,6 +15,7 @@
 
 1、定义 “状态”；
 2、找到 “状态转移方程”。
+初始状态是什么？状态转移方程是什么？
 https://leetcode-cn.com/problems/longest-palindromic-substring/solution/zhong-xin-kuo-san-dong-tai-gui-hua-by-liweiwei1419/
 '''
 class Solution:
