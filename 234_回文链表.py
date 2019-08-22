@@ -25,8 +25,43 @@ class ListNode:
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
         if not head:
-            return head
-        p = q = head
-        while q:
-            p = p.next
-            q = q.next.next
+            return True
+        slow = fast = head
+        prev = None
+
+        # 快慢指针找到链表中点
+        while fast:
+            slow = slow.next
+            # 如果fast.next存在，就让fast = fast.next.next，否则fast = None
+            fast = fast.next.next if fast.next else fast.next
+
+        # 反转链表，以slow为头节点
+        while slow:
+            last = slow.next
+            slow.next = prev
+            prev = slow
+            slow = last
+
+        while head and prev:
+            if head.val != prev.val:
+                return False
+
+            head = head.next
+            prev = prev.next
+
+        return True
+
+
+node1 = ListNode(1)
+node2 = ListNode(2)
+# node3 = ListNode(3)
+node4 = ListNode(2)
+node5 = ListNode(1)
+
+node1.next = node2
+node2.next = node4
+# node3.next = node4
+node4.next = node5
+
+s = Solution()
+print(s.isPalindrome(node5))
