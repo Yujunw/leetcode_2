@@ -19,8 +19,24 @@
 
 输出: 3
 
+求图中连通块的数量
+并查集，bfs，dfs
 '''
 
 
 class Solution:
+
     def numIslands(self, grid):
+        f = {}
+
+        def find(x):
+            # 若在f的键中没有x，则默认设置f[x]=x
+            f.setdefault(x, x)
+
+            if f[x] != x:
+                f[x] = find(f[x])
+            return f[x]
+
+
+s = Solution()
+s.numIslands(1)

@@ -29,7 +29,7 @@ class Solution:
         '''
         x = str(numerator / denominator)
         l = x.split('.')
-        res =
+        # res =
 
 
 print(1 / 19)

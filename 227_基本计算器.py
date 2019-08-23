@@ -36,6 +36,23 @@ class Solution:
                 print(s)
         return s
 
+    def calculate_2(self, s: str):
+        num_stack = []
+        op_stack = []
+
+        i = 0
+        while i < len(s):
+            if s[i] == ' ':
+                continue
+
+            if s[i].isdigit():
+                num_stack.append(int(s[i]))
+            elif s[i] in ['+', '-']:
+                op_stack.append(s[i])
+            elif s[i] == '*':
+
+
+
 
 s = Solution()
 strs = " 3+5 / 2 "
