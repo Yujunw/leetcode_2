@@ -69,9 +69,7 @@ class Codec:
         :rtype: TreeNode
         """
 
-# Your Codec object will be instantiated and called as such:
-# codec = Codec()
-# codec.deserialize(codec.serialize(root))
+
 node1 = TreeNode(1)
 node2 = TreeNode(2)
 node3 = TreeNode(3)
