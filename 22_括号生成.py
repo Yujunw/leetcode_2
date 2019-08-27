@@ -13,24 +13,24 @@
 控制右括号的个数必须小于左括号
 '''
 
+
 class Solution:
     def generateParenthesis(self, n):
         res = []
+
         def backtrace(combination, left, right):
-            if len(combination) == 2*n:
+            if len(combination) == 2 * n:
                 res.append(combination)
             # 这就是剪枝条件，左括号个数必须小于总数，右括号个数必须小于左括号
             if left < n:
-                backtrace(combination+'(', left+1, right)
+                backtrace(combination + '(', left + 1, right)
             if right < left:
-                backtrace(combination+')', left, right+1)
+                backtrace(combination + ')', left, right + 1)
 
-        backtrace('',0,0)
+        backtrace('', 0, 0)
         return res
+
 
 S = Solution()
 n = 0
 print(S.generateParenthesis(n))
-
-        
-
