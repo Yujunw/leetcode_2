@@ -34,8 +34,10 @@ class Solution:
             # 若在f的键中没有x，则默认设置f[x]=x
             f.setdefault(x, x)
 
+            # 优化，路径压缩，这样的压缩操作使得集合树只有两层。所有的节点都指向根节点，这种情况下，我们搜索任何节点的根节点都最多只需要一步就能够完成，
             if f[x] != x:
                 f[x] = find(f[x])
+
             return f[x]
 
         def union(x, y):

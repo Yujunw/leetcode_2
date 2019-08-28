@@ -22,14 +22,6 @@ class Solution:
         res = []
         n = len(nums)
 
-        # def __backtrace(combination: list, digits: list):
-        #     # if len(digits) == 0:
-        #     #     return
-        #     res.append(combination)
-        #     for i in digits:
-        #         temp = [digit for digit in digits if digit != i]
-        #         __backtrace(combination+[i], temp)
-
         def __backtrace(combination, i):
             res.append(combination)
             for j in range(i, n):
