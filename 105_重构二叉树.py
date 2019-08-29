@@ -65,5 +65,5 @@ class Solution:
 s = Solution()
 preorder = [3,9,6,15,7,8]
 inorder = [6,9,3,7,15,8]
-root = s.bulidTree_2(preorder, inorder)
+root = s.buildTree_2(preorder, inorder)
 print(s.inorderTravel(root))
