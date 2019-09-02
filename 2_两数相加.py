@@ -17,6 +17,7 @@ class ListNode(object):
         self.val = x
         self.next = None
 
+
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
         """
@@ -27,15 +28,15 @@ class Solution(object):
         """
         l1_num = self.node2num(l1)
         l2_num = self.node2num(l2)
-        res = l1_num+l2_num
+        res = l1_num + l2_num
         # print(res)
         l0 = ListNode(0)
         dummy = l0
         if res == 0:
             return dummy
         while res:
-            tmp = res%10
-            res = res//10
+            tmp = res % 10
+            res = res // 10
             ll = ListNode(tmp)
             l0.next = ll
             l0 = l0.next
@@ -44,9 +45,9 @@ class Solution(object):
 
     def node2num(self, l):
         num = 0
-        i=0
+        i = 0
         while l:
-            num += l.val*10**i
+            num += l.val * 10 ** i
             l = l.next
             i += 1
         return num
@@ -73,7 +74,6 @@ class Solution(object):
         return dummy.next
 
 
-
 if __name__ == '__main__':
     l1 = ListNode(1)
     l2 = ListNode(2)
@@ -90,7 +90,7 @@ if __name__ == '__main__':
     l4.next = l5
     l5.next = l6
     s = Solution()
-    l = s.addTwoNumbers(l0,l0)
+    l = s.addTwoNumbers(l0, l0)
 
     while l:
         print(l.val)
